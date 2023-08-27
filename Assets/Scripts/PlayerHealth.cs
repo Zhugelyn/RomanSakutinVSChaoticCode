@@ -8,13 +8,13 @@ public class PlayerHealth : MonoBehaviour
     public event Action<int, int> HealthChanged;
 
     [ContextMenu(nameof(Heal))]
-    private void Heal()
+    public void Heal()
     {
         _health += 1;
         HealthChanged?.Invoke(_health, _maxHealth);
     }
-    [ContextMenu(nameof(Damage))]
-    private void Damage()
+    [ContextMenu(nameof(TakeDamage))]
+    public void TakeDamage()
     {
         _health -= 1;
         HealthChanged?.Invoke(_health, _maxHealth);
