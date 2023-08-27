@@ -7,25 +7,29 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float _speed;
     [SerializeField] private Animator _animator;
-    [SerializeField] private CharacterAnimationSwitcher _characterAnimationSwitcher;
+    [SerializeField] private Rigidbody2D _rb;
 
-    private Vector3 _moveDelta;
+    private Vector2 _moveDelta;
 
     private void Update()
     {
-        float x = Input.GetAxis(HorizontalAxis);
-        float y = Input.GetAxis(VerticalAxis);
+        _moveDelta.x = Input.GetAxisRaw(HorizontalAxis);
+        _moveDelta.y = Input.GetAxisRaw(VerticalAxis);
 
-        _moveDelta = new Vector3(x, y, 0f);
-
-        ToggleAnimation();
+        Walk();
         transform.Translate(_moveDelta * _speed * Time.deltaTime);
     }
 
-    private void ToggleAnimation()
+    private void FixedUpdate()
     {
-        _characterAnimationSwitcher.ToggleWalkingAnimation(_moveDelta);
-        _characterAnimationSwitcher.ToogleRunningAnimation(_moveDelta);
-        _characterAnimationSwitcher.ToogleIdleAnimation(_moveDelta);
+        _rb.MovePosition(_rb.position + _moveDelta * _speed * Time.deltaTime);
+    }
+
+    private void Walk()
+    {
+        _animator.SetFloat(HorizontalAxis, _moveDelta.x);
+        _animator.SetFloat(VerticalAxis, _moveDelta.y);
+        _animator.SetFloat("Speed", _moveDelta.sqrMagnitude);
+        Debug.Log(_moveDelta.sqrMagnitude);
     }
 }
