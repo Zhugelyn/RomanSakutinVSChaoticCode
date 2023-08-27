@@ -193,6 +193,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: vape (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7866206228775969157, guid: c2cd71fe47697b242a0e1bd606f37185, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342611038381523262, guid: c2cd71fe47697b242a0e1bd606f37185, type: 3}
+      propertyPath: _playerHealth
+      value: 
+      objectReference: {fileID: 733034049}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -609,6 +617,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: vape (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7866206228775969157, guid: c2cd71fe47697b242a0e1bd606f37185, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342611038381523262, guid: c2cd71fe47697b242a0e1bd606f37185, type: 3}
+      propertyPath: _playerHealth
+      value: 
+      objectReference: {fileID: 733034049}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19906,6 +19922,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: vape
       objectReference: {fileID: 0}
+    - target: {fileID: 7866206228775969157, guid: c2cd71fe47697b242a0e1bd606f37185, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342611038381523262, guid: c2cd71fe47697b242a0e1bd606f37185, type: 3}
+      propertyPath: _playerHealth
+      value: 
+      objectReference: {fileID: 733034049}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

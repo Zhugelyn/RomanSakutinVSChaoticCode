@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
     [ContextMenu(nameof(Heal))]
     public void Heal()
     {
+        if( _health == _maxHealth )
+            return;
         _health += 1;
         HealthChanged?.Invoke(_health, _maxHealth);
     }
