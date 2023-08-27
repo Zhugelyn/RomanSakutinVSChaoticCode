@@ -526,7 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0681e4462e93b714893796ac0141976a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
+  _animator: {fileID: 733034047}
   _attackPoint: {fileID: 228033503}
   _attackRange: 0.5
   _enemyLayers:
