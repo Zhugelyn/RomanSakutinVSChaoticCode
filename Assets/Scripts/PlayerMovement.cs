@@ -4,15 +4,17 @@ public class PlayerMovement : MonoBehaviour
 {
     private const string HorizontalAxis = "Horizontal";
     private const string VerticalAxis = "Vertical";
-    private string MoveDeltaX = "MoveDeltaX";
-    private string MoveDeltaY = "MoveDeltaY";
-    private string IsVertical = "IsVertical";
 
-    [SerializeField] private float _speed = 0.3f;
+    [SerializeField] private float _speed;
     [SerializeField] private Animator _animator;
 
+    // Надо бы работу с анимациями в отделный класс пихнуть.
+    private string _moveDeltaX = "MoveDeltaX";
+    private string _moveDeltaY = "MoveDeltaY";
+    private string _isHorizontal = "IsHorizontal";
+    private string _isStanding = "IsStanding";
+    private string _isRunning = "Running";
     private Vector3 _moveDelta;
-    private bool _isFacingRight = true;
 
     private void Update()
     {
@@ -21,29 +23,42 @@ public class PlayerMovement : MonoBehaviour
 
         _moveDelta = new Vector3(x, y, 0f);
 
+        ToggleAnimation();
         transform.Translate(_moveDelta * _speed * Time.deltaTime);
-        ToggleAnimation(_moveDelta);
-        Flip(x);
     }
 
-    private void ToggleAnimation(Vector3 moveDelta)
+    private void ToggleAnimation()
     {
-        _animator.SetFloat(MoveDeltaX, moveDelta.x);
-        _animator.SetFloat(MoveDeltaY, moveDelta.y);
+        ToggleWalkingAnimation();
+        ToogleRunningAnimation();
+        ToogleIdleAnimation();
+    }
 
-        if (moveDelta.y > 0 || moveDelta.y < 0)
-            _animator.SetBool(IsVertical, true);
+    public void ToggleWalkingAnimation()
+    {
+        _animator.SetFloat(_moveDeltaX, _moveDelta.x);
+        _animator.SetFloat(_moveDeltaY, _moveDelta.y);
+
+        if (_moveDelta.x != 0)
+            _animator.SetBool(_isHorizontal, true);
         else
-            _animator.SetBool(IsVertical, false);
+            _animator.SetBool(_isHorizontal, false);
     }
-    private void Flip(float x)
+
+    public void ToogleRunningAnimation()
     {
-        if (_isFacingRight && x < 0f || !_isFacingRight && x > 0f)
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            _isFacingRight = !_isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
+            _speed = 2f;
+            _animator.SetTrigger(_isRunning);
         }
+    }
+
+    public void ToogleIdleAnimation()
+    {
+        if (_moveDelta.x == 0 && _moveDelta.y == 0)
+            _animator.SetBool(_isStanding, true);
+        else
+            _animator.SetBool(_isStanding, false);
     }
 }
