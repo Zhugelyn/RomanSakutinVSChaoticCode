@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
+using System;
 using UnityEngine;
 
 public class DildoTrigger : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _renderer;
+    public event Action<bool> OnDieSound;
 
     private int hp = 10;
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,7 +18,12 @@ public class DildoTrigger : MonoBehaviour
         }
 
         if (hp == 0)
+        {
+            OnDieSound?.Invoke(true);
             Destroy(gameObject);
+
+        }
+
 
         if (gameObject.layer == 6)
             Destroy(gameObject);
