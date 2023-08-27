@@ -4,6 +4,7 @@ using System;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int _health;
+    [SerializeField] private AudioSource _audioSource;
     private int _maxHealth = 3;
     public event Action<int, int> HealthChanged;
 
@@ -20,5 +21,6 @@ public class PlayerHealth : MonoBehaviour
     {
         _health -= 1;
         HealthChanged?.Invoke(_health, _maxHealth);
+        _audioSource.Play();
     }
 }
